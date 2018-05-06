@@ -16,12 +16,23 @@ Enemy.prototype.update = function (dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x += this.speed * (dt + 1) ; 
-
+    this.x += this.speed * dt;
+    console.log(this.speed);
+    // to return the bugs to the left side
     if (this.x > 550) {
         this.x = -120;
+        // to return the bugs back with different speed
         this.speed = randomSpeed();
-    }  
+    }
+   // collision detection
+    if (this.x < player.x + 80 &&
+        this.x + 80 > player.x &&
+        this.y < player.y + 80 &&
+        this.y + 80 > player.y) {
+        // to return the player to the starting position
+        player.x = 200;
+        player.y = 400;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -69,7 +80,7 @@ Player.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-const randomSpeed = () => Math.floor((Math.random() * 7) + 2);
+const randomSpeed = () => Math.floor((Math.random() * 400) + 200);
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
