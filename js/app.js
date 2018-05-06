@@ -17,14 +17,14 @@ Enemy.prototype.update = function (dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x += this.speed * dt;
-    console.log(this.speed);
+    // console.log(this.speed);
     // to return the bugs to the left side
     if (this.x > 550) {
         this.x = -120;
         // to return the bugs back with different speed
         this.speed = randomSpeed();
     }
-   // collision detection
+    // collision detection
     if (this.x < player.x + 80 &&
         this.x + 80 > player.x &&
         this.y < player.y + 80 &&
@@ -50,7 +50,18 @@ const Player = function (x, y, sprite) {
     this.y = y;
     this.sprite = 'images/char-boy.png';
 };
-Player.prototype.update = function () {};
+
+Player.prototype.update = function () {
+    
+    if (this.y == -25) {
+        setTimeout(function () {
+            player.x = 200;
+            player.y = 400;
+        }, 700);
+    }
+
+};
+
 Player.prototype.handleInput = function (keyCode) {
 
     switch (keyCode) {
