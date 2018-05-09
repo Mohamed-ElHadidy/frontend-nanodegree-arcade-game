@@ -20,7 +20,7 @@ Enemy.prototype.update = function (dt) {
     // console.log(this.speed);
     // to return the bugs to the left side
     if (this.x > 550) {
-        this.x = -120;
+        this.x = -200;
         // to return the bugs back with different speed
         this.speed = randomSpeed();
     }
@@ -91,7 +91,7 @@ Player.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-const randomSpeed = () => Math.floor((Math.random() * 400) + 200);
+const randomSpeed = () => Math.floor((Math.random() * 150) + 50);
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
