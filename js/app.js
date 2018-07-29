@@ -46,7 +46,7 @@ const Gem = function (x, y, sprite) {
 
     this.x = x;
     this.y = y;
-    this.sprite = 'images/Gem Orange.png';
+    this.sprite = random(sprites);
 
 }
 
@@ -59,8 +59,9 @@ Gem.prototype.update = function () {
 
             //send the collected gem offscreen
             this.x = -500;
-            // return it back in new x postion
+            // return it back in new x postion and random sprite
             setTimeout(() => this.x = random(posX), 3000);
+            this.sprite = random(sprites);
 
         }
 
@@ -73,6 +74,14 @@ Gem.prototype.update = function () {
         // To get random gems positons 
 
         const posX = [7, 57, 107, 157, 207, 257, 307, 357, 407];
+
+        // To get random spriets
+
+        const sprites = [
+            'images/Gem Blue.png',
+            'images/Gem Green.png',
+            'images/Gem Orange.png'
+        ];
 
         const random = function getRandomElement(arr) {
             let randomElement = arr[Math.floor(Math.random() * arr.length)];
