@@ -1,3 +1,53 @@
+/// Level & Score & lives ///
+
+const score = document.querySelector('.score-num');
+const level = document.querySelector('.level-num');
+const lives = document.querySelector('.lives-num');
+
+let levelCount = 0;
+let scoCount = 0;
+let livesCount = 3;
+
+function scoreIncrement(x) {
+    scoCount += x;
+    score.innerHTML = `${scoCount}`;
+}
+
+function levelIncrement(x) {
+
+    levelCount += x;
+    level.innerHTML = `${levelCount}`;
+    
+    if (levelCount === 10) {
+        alert(`Congrats you score is ${score.innerHTML}`);
+        reset();
+    }
+}
+
+function livesDecrement() {
+
+    livesCount--;
+    lives.innerHTML = ` x${livesCount}`;
+
+    if (livesCount === 0) {
+        alert('gameover')
+        reset();
+    }
+
+}
+
+function reset() {
+    // reset lives
+    livesCount = 3;
+    lives.innerHTML = ` x${livesCount}`;
+    // reset levels
+    levelCount = 0;
+    level.innerHTML = 0;
+    // reset score
+    scoCount = 0;
+    score.innerHTML = 0;
+}
+
 // Enemies our player must avoid
 const Enemy = function (x, y, speed, sprite) {
     // Variables applied to each of our instances go here,
@@ -32,6 +82,8 @@ Enemy.prototype.update = function (dt) {
         // to return the player to the starting position
         player.x = 200;
         player.y = 400;
+        // decrease the lives by one
+        livesDecrement();
     }
 };
 
@@ -62,6 +114,9 @@ Gem.prototype.update = function () {
         // return it back in new x postion and random sprite
         setTimeout(() => this.x = random(posX), 3000);
         this.sprite = random(sprites);
+
+        // add 25 points when the player collect a gem
+        scoreIncrement(25);
 
     }
 
@@ -102,10 +157,11 @@ const Player = function (x, y, sprite) {
 Player.prototype.update = function () {
 
     if (this.y == -25) {
-        setTimeout(function () {
-            player.x = 200;
-            player.y = 400;
-        }, 700);
+        // return the player back to the starting point
+        player.x = 200;
+        player.y = 400;
+        // add one more level
+        levelIncrement(1);
     }
 
 };
