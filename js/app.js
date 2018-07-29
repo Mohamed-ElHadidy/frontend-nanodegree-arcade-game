@@ -1,4 +1,5 @@
-// Enemies our player must avoid
+////// Enemies our player must avoid ////////////////
+
 const Enemy = function (x, y, speed, sprite) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -42,7 +43,7 @@ Enemy.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-//Gems 
+//////////////// Gems /////////////////////
 
 const Gem = function (x, y, sprite) {
 
@@ -93,12 +94,12 @@ const random = function getRandomElement(arr) {
     return randomElement;
 }
 
+//////////////// Player ///////////////////////
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
 
 const Player = function (x, y, sprite) {
-
     this.x = x;
     this.y = y;
     this.sprite = 'images/char-boy.png';
@@ -141,6 +142,7 @@ Player.prototype.handleInput = function (keyCode) {
             break;
     }
 };
+
 Player.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
@@ -154,11 +156,14 @@ const enemy1 = new Enemy(300, 140, randomSpeed());
 const enemy2 = new Enemy(3, 225, randomSpeed());
 const enemy3 = new Enemy(100, 60, randomSpeed());
 const allEnemies = [enemy1, enemy2, enemy3];
+
 const gem1 = new Gem(300, 77);
 const gem2 = new Gem(3, 162);
 const gem3 = new Gem(100, 242);
-let allGems = [gem1, gem2, gem3];
+const allGems = [gem1, gem2, gem3];
+
 const player = new Player(200, 400);
+
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function (e) {
@@ -172,7 +177,7 @@ document.addEventListener('keyup', function (e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-/// Level & Score & lives ///
+//////////////// Level & Score & lives /////////////////////
 
 const score = document.querySelector('.score-num');
 const level = document.querySelector('.level-num');
@@ -188,7 +193,6 @@ function scoreIncrement(x) {
 }
 
 function levelIncrement(x) {
-
     levelCount += x;
     level.innerHTML = `${levelCount}`;
     
@@ -199,7 +203,6 @@ function levelIncrement(x) {
 }
 
 function livesDecrement() {
-
     livesCount--;
     lives.innerHTML = ` x${livesCount}`;
 
@@ -207,7 +210,6 @@ function livesDecrement() {
         alert('gameover')
         reset();
     }
-
 }
 
 function reset() {
