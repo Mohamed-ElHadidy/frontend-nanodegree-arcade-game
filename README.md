@@ -12,6 +12,13 @@ Udacity Front-End Developer Nanodegree Fourth Project
 
 * Live preview http://mohamed-elhadidy.github.io/frontend-nanodegree-arcade-game
 
+* Play it localey : 
+  Download it from [Here](https://github.com/Mohamed-ElHadidy/frontend-nanodegree-arcade-game/archive/master.zip)
+***OR***
+Clone it by : ``` git clone https://github.com/Mohamed-ElHadidy/frontend-nanodegree-arcade-game.git ```
+after that open ```index.html``` file.
+
+
 <img src="images/preview.png" alt="froger-game-preview">
 
 
