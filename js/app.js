@@ -1,53 +1,3 @@
-/// Level & Score & lives ///
-
-const score = document.querySelector('.score-num');
-const level = document.querySelector('.level-num');
-const lives = document.querySelector('.lives-num');
-
-let levelCount = 0;
-let scoCount = 0;
-let livesCount = 3;
-
-function scoreIncrement(x) {
-    scoCount += x;
-    score.innerHTML = `${scoCount}`;
-}
-
-function levelIncrement(x) {
-
-    levelCount += x;
-    level.innerHTML = `${levelCount}`;
-    
-    if (levelCount === 10) {
-        alert(`Congrats you score is ${score.innerHTML}`);
-        reset();
-    }
-}
-
-function livesDecrement() {
-
-    livesCount--;
-    lives.innerHTML = ` x${livesCount}`;
-
-    if (livesCount === 0) {
-        alert('gameover')
-        reset();
-    }
-
-}
-
-function reset() {
-    // reset lives
-    livesCount = 3;
-    lives.innerHTML = ` x${livesCount}`;
-    // reset levels
-    levelCount = 0;
-    level.innerHTML = 0;
-    // reset score
-    scoCount = 0;
-    score.innerHTML = 0;
-}
-
 // Enemies our player must avoid
 const Enemy = function (x, y, speed, sprite) {
     // Variables applied to each of our instances go here,
@@ -221,3 +171,53 @@ document.addEventListener('keyup', function (e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+/// Level & Score & lives ///
+
+const score = document.querySelector('.score-num');
+const level = document.querySelector('.level-num');
+const lives = document.querySelector('.lives-num');
+
+let levelCount = 0;
+let scoCount = 0;
+let livesCount = 3;
+
+function scoreIncrement(x) {
+    scoCount += x;
+    score.innerHTML = `${scoCount}`;
+}
+
+function levelIncrement(x) {
+
+    levelCount += x;
+    level.innerHTML = `${levelCount}`;
+    
+    if (levelCount === 10) {
+        alert(`Congrats you score is ${score.innerHTML}`);
+        reset();
+    }
+}
+
+function livesDecrement() {
+
+    livesCount--;
+    lives.innerHTML = ` x${livesCount}`;
+
+    if (livesCount === 0) {
+        alert('gameover')
+        reset();
+    }
+
+}
+
+function reset() {
+    // reset lives
+    livesCount = 3;
+    lives.innerHTML = ` x${livesCount}`;
+    // reset levels
+    levelCount = 0;
+    level.innerHTML = 0;
+    // reset score
+    scoCount = 0;
+    score.innerHTML = 0;
+}
