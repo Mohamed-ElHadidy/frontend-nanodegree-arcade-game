@@ -52,86 +52,107 @@ const Gem = function (x, y, sprite) {
 
 Gem.prototype.update = function () {
 
-}
+        if (this.x < player.x + 80 &&
+            this.x + 80 > player.x &&
+            this.y < player.y + 60 &&
+            this.y + 60 > player.y) {
 
-Gem.prototype.render = function () {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 84, 140);
-};
+            //send the collected gem offscreen
+            this.x = -500;
+            // return it back in new x postion
+            setTimeout(() => this.x = random(posX), 3000);
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+        }
 
-const Player = function (x, y, sprite) {
+        Gem.prototype.render = function () {
+            ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 84, 140);
+        };
 
-    this.x = x;
-    this.y = y;
-    this.sprite = 'images/char-boy.png';
-};
-
-Player.prototype.update = function () {
-    
-    if (this.y == -25) {
-        setTimeout(function () {
-            player.x = 200;
-            player.y = 400;
-        }, 700);
     }
 
-};
+        // To get random gems positons 
 
-Player.prototype.handleInput = function (keyCode) {
+        const posX = [7, 57, 107, 157, 207, 257, 307, 357, 407];
 
-    switch (keyCode) {
-        case 'left':
-            if (this.x > 0) {
-                this.x -= 100;
+        const random = function getRandomElement(arr) {
+            let randomElement = arr[Math.floor(Math.random() * arr.length)];
+            return randomElement;
+        }
+
+        // Now write your own player class
+        // This class requires an update(), render() and
+        // a handleInput() method.
+
+        const Player = function (x, y, sprite) {
+
+            this.x = x;
+            this.y = y;
+            this.sprite = 'images/char-boy.png';
+        };
+
+        Player.prototype.update = function () {
+
+            if (this.y == -25) {
+                setTimeout(function () {
+                    player.x = 200;
+                    player.y = 400;
+                }, 700);
             }
-            break;
-        case 'up':
-            if (this.y > -25) {
-                this.y -= 85;
-            }
-            break;
-        case 'right':
-            if (this.x < 400) {
-                this.x += 100;
-            }
-            break;
-        case 'down':
-            if (this.y < 400) {
-                this.y += 85;
-            }
-            break;
-    }
-};
-Player.prototype.render = function () {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
 
-const randomSpeed = () => Math.floor((Math.random() * 150) + 50);
+        };
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-const enemy1 = new Enemy(300, 140, randomSpeed());
-const enemy2 = new Enemy(3, 225, randomSpeed());
-const enemy3 = new Enemy(100, 60, randomSpeed());
-const allEnemies = [enemy1, enemy2, enemy3];
-const gem1 = new Gem(300, 77);
-const gem2 = new Gem(3, 162);
-const gem3 = new Gem(100, 242);
-let allGems = [gem1, gem2, gem3];
-const player = new Player(200, 400);
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function (e) {
-    var allowedKeys = {
-        37: 'left',
-        38: 'up',
-        39: 'right',
-        40: 'down'
-    };
+        Player.prototype.handleInput = function (keyCode) {
 
-    player.handleInput(allowedKeys[e.keyCode]);
-});
+            switch (keyCode) {
+                case 'left':
+                    if (this.x > 0) {
+                        this.x -= 100;
+                    }
+                    break;
+                case 'up':
+                    if (this.y > -25) {
+                        this.y -= 85;
+                    }
+                    break;
+                case 'right':
+                    if (this.x < 400) {
+                        this.x += 100;
+                    }
+                    break;
+                case 'down':
+                    if (this.y < 400) {
+                        this.y += 85;
+                    }
+                    break;
+            }
+        };
+        Player.prototype.render = function () {
+            ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+        };
+
+        const randomSpeed = () => Math.floor((Math.random() * 150) + 50);
+
+        // Now instantiate your objects.
+        // Place all enemy objects in an array called allEnemies
+        // Place the player object in a variable called player
+        const enemy1 = new Enemy(300, 140, randomSpeed());
+        const enemy2 = new Enemy(3, 225, randomSpeed());
+        const enemy3 = new Enemy(100, 60, randomSpeed());
+        const allEnemies = [enemy1, enemy2, enemy3];
+        const gem1 = new Gem(300, 77);
+        const gem2 = new Gem(3, 162);
+        const gem3 = new Gem(100, 242);
+        let allGems = [gem1, gem2, gem3];
+        const player = new Player(200, 400);
+        // This listens for key presses and sends the keys to your
+        // Player.handleInput() method. You don't need to modify this.
+        document.addEventListener('keyup', function (e) {
+            var allowedKeys = {
+                37: 'left',
+                38: 'up',
+                39: 'right',
+                40: 'down'
+            };
+
+            player.handleInput(allowedKeys[e.keyCode]);
+        });
