@@ -1,6 +1,8 @@
+'use strict';
+
 ////// Enemies our player must avoid ////////////////
 
-const Enemy = function (x, y, speed, sprite) {
+const Enemy = function (x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     this.x = x;
@@ -45,7 +47,7 @@ Enemy.prototype.render = function () {
 
 //////////////// Gems /////////////////////
 
-const Gem = function (x, y, sprite) {
+const Gem = function (x, y) {
 
     this.x = x;
     this.y = y;
@@ -99,7 +101,7 @@ const random = function getRandomElement(arr) {
 // This class requires an update(), render() and
 // a handleInput() method.
 
-const Player = function (x, y, sprite) {
+const Player = function (x, y) {
     this.x = x;
     this.y = y;
     this.sprite = 'images/char-boy.png';
@@ -109,8 +111,8 @@ Player.prototype.update = function () {
 
     if (this.y == -25) {
         // return the player back to the starting point
-        player.x = 200;
-        player.y = 400;
+        this.x = 200;
+        this.y = 400;
         // add one more level
         levelIncrement(1);
     }
